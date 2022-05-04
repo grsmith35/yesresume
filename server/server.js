@@ -3,7 +3,7 @@ const {ApolloServer} = require('apollo-server-express');
 const path = require('path');
 const dotenv = require('dotenv').config();
 const {typeDefs, resolvers} = require('./schemas');
-const {authMiddleware} = require('./utils/auth');
+// const {authMiddleware} = require('./utils/auth');
 const db = require('./config/connection');
 const nodemailer = require('nodemailer');
 const moment = require('moment');
@@ -17,7 +17,7 @@ const startServer = async () => {
   const server = new ApolloServer({
     typeDefs,
     resolvers,
-    context: authMiddleware,
+    // context: authMiddleware,
   });
   await server.start();
   server.applyMiddleware({ app });
@@ -32,7 +32,6 @@ app.use(express.json());
 const getAllApps = async () => {
   const currentDate = moment().format('MM DD YYYY');
   const appsToday = await Apps.find({ date: currentDate });
-  //console.log(appsToday.length)
   return appsToday;
 };
 
@@ -70,10 +69,10 @@ const sendUpdate =  async () => {
 const keepTime = () => {
   setInterval(function() {
     let currentTime = moment().format('LT');
-    if(currentTime === '11:30 PM') {
+    if(currentTime === '1:40 PM') {
       sendUpdate();
     }
-  }, 40000)
+  }, 30000)
 }
 keepTime();
 

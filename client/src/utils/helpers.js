@@ -18,16 +18,16 @@ export function capitalizeFirstLetter(string) {
    
  }
 
- async function submitResume(name, email) {
-  const response = await fetch(`/api/something/post/${name}/${email}`,{
-    method: "get",
-    headers: {
-      'Content-Type': 'application/json',
-      }
-    }
-  )
-  console.log(response);
- }
+//  async function submitResume(name, email) {
+//   const response = await fetch(`/api/something/post/${name}/${email}`,{
+//     method: "get",
+//     headers: {
+//       'Content-Type': 'application/json',
+//       }
+//     }
+//   )
+//   console.log(response);
+//  }
 
  export function createResume(toSend) {
   let currDesc = 0;
@@ -157,6 +157,6 @@ export function capitalizeFirstLetter(string) {
     }
   }
 
-  submitResume(newStuff[0].fullname, newStuff[0].email);
+  // submitResume(newStuff[0].fullname, newStuff[0].email);
   doc.save(`${newStuff[0].fullname} resume.pdf`);
 };

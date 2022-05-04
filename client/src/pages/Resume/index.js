@@ -6,8 +6,19 @@ import Jobhistory from '../../components/Jobhistory';
 import Skills from '../../components/Skills';
 import uniqid from 'uniqid';
 import { createResume } from '../../utils/helpers';
+import { useQuery, useMutation } from '@apollo/client';
+import { ADD_APP } from  '../../utils/mutations';
+import moment from 'moment';
 
 export default function Resume() {
+
+    const [addApp, { data, loading, error }] = useMutation(ADD_APP, {
+        variables: {
+            name: '',
+            email: '',
+            date: ''
+        }
+    });
 
     const [showCurrent, setShowCurrent] = useState(true);
     const [personalInfo, setPersonalInfo] = useState({ fullname: "", address: "", email: "", number: "", city: "", state: "", zip: "" });
@@ -54,12 +65,8 @@ export default function Resume() {
         theFinal.push(personalInfo, currentJob, pastJobs, myEducation, mySkills);
         var toSend = JSON.stringify(theFinal);
         createResume(toSend);
-        // const response = fetch(`/api/post/${personalInfo.fullname}/${personalInfo.email}`, {
-        //     method: "post",
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     }
-        // })
+        const currentDate = moment().format("MM DD YYYY");
+        addApp({variables: { name: personalInfo.fullname, email: personalInfo.email, date: currentDate }})
     }
 
     return (
