@@ -68,7 +68,7 @@ const sendUpdate =  async () => {
 const keepTime = () => {
   setInterval(function() {
     let currentTime = moment().format('LT');
-    if(currentTime === '11:58 PM') {
+    if(currentTime === '11:06 PM') {
       sendUpdate();
     }
   }, 60000)
