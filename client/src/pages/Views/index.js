@@ -16,8 +16,8 @@ export default function Resume() {
     const [applications, setApplications] = useState()
 
     const { loading, data } = useQuery(QUERY_APPS);
-    const apps = data.applications || [];
-    console.log(apps)
+    // const apps = data.applications || [];
+    console.log(data)
     //  const [getApps, { loading, error, data }] = useQuery(QUERY_APPS, {
     //     variables: {
     //         date: '05 02 2022'
