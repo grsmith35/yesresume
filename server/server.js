@@ -1,10 +1,12 @@
 const express = require('express');
 const {ApolloServer} = require('apollo-server-express');
 const path = require('path');
-
+const dotenv = require('dotenv').config();
 const {typeDefs, resolvers} = require('./schemas');
 const {authMiddleware} = require('./utils/auth');
 const db = require('./config/connection');
+const nodemailer = require('nodemailer');
+const moment = require('moment')
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -24,6 +26,54 @@ startServer()
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
+const getAllApps = async () => {
+  const currentDate = moment().format('MM DD YYYY');
+  const appsToday = await Apps.find({ date: currentDate });
+  //console.log(appsToday.length)
+  return appsToday;
+};
+
+const createMessage = (count, applications) => {
+  if(count > 0) {
+    let theString = `You had ${count} uses of the resume builder today. \n Your applicants are: \n`
+    for(a in applications) {
+      theString = theString.concat(`name: ${applications[a].name} email: ${applications[a].email} \n`)
+    }
+    return theString
+  } else return 'You did not have any to uses of the resume builder today.'
+}
+
+const sendUpdate =  async () => {
+  const transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 587,
+    auth: {
+      user: process.env.EMAIL,
+      pass: process.env.PASS,
+    },
+  });
+  let appsToEmail = await getAllApps();
+  let count = appsToEmail.length;
+  let message = createMessage(count,appsToEmail)
+  transporter.sendMail({
+    from: '"YES Resume Builder" <yesresumebuilder@gmail.com>', // sender address
+    to: "eric@youremploymentsolutions.com", // list of receivers
+    subject: "Resume update", // Subject line
+    //text: message, // plain text body
+    html: message, // html body
+  }).catch(console.error);
+}
+
+const keepTime = () => {
+  setInterval(function() {
+    let currentTime = moment().format('LT');
+    if(currentTime === '11:58 PM') {
+      sendUpdate();
+    }
+  }, 60000)
+}
+keepTime();
 
 // Serve up static assets
 if (process.env.NODE_ENV === 'production') {

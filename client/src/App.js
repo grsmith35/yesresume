@@ -8,15 +8,9 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
-import Header from './components/Header';
+import Resume from './pages/Resume';
+import Nav from './components/Nav';
 import Footer from './components/Footer';
-
-import Home from './pages/Home';
-import Login from './pages/Login';
-import NoMatch from './pages/NoMatch';
-import SingleThought from './pages/SingleThought';
-import Profile from './pages/Profile';
-import Signup from './pages/Signup';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -40,23 +34,13 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <Router>
-        <div className="flex-column justify-flex-start min-100-vh">
-          <Header />
-          <div className="container">
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/signup" component={Signup} />
-              <Route exact path="/profile/:username?" component={Profile} />
-              <Route exact path="/thought/:id" component={SingleThought} />
-
-              <Route component={NoMatch} />
-            </Switch>
-          </div>
-          <Footer />
-        </div>
-      </Router>
+     <div className="">
+        <Nav></Nav>
+        <main>
+          <Resume></Resume>
+        </main>
+        <Footer></Footer>
+      </div>
     </ApolloProvider>
   );
 }
