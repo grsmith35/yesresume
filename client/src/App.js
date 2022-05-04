@@ -11,6 +11,7 @@ import { setContext } from '@apollo/client/link/context';
 import Resume from './pages/Resume';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
+import Views from './pages/Views';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -37,7 +38,7 @@ function App() {
      <div className="">
         <Nav></Nav>
         <main>
-          <Resume></Resume>
+          <Views></Views>
         </main>
         <Footer></Footer>
       </div>

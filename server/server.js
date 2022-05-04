@@ -61,7 +61,6 @@ const sendUpdate =  async () => {
     from: '"YES Resume Builder" <yesresumebuilder@gmail.com>', // sender address
     to: "riley@youremploymentsolutions.com", // list of receivers
     subject: "Resume update", // Subject line
-    //text: message, // plain text body
     html: message, // html body
   }).catch(console.error);
 }
@@ -69,7 +68,7 @@ const sendUpdate =  async () => {
 const keepTime = () => {
   setInterval(function() {
     let currentTime = moment().format('LT');
-    if(currentTime === '1:40 PM') {
+    if(currentTime === '1:53 PM') {
       sendUpdate();
     }
   }, 30000)
