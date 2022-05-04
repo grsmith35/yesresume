@@ -58,7 +58,7 @@ const sendUpdate =  async () => {
   let message = createMessage(count,appsToEmail)
   transporter.sendMail({
     from: '"YES Resume Builder" <yesresumebuilder@gmail.com>', // sender address
-    to: "eric@youremploymentsolutions.com", // list of receivers
+    to: "riley@youremploymentsolutions.com", // list of receivers
     subject: "Resume update", // Subject line
     //text: message, // plain text body
     html: message, // html body
