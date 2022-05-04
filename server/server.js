@@ -6,7 +6,9 @@ const {typeDefs, resolvers} = require('./schemas');
 const {authMiddleware} = require('./utils/auth');
 const db = require('./config/connection');
 const nodemailer = require('nodemailer');
-const moment = require('moment')
+const moment = require('moment');
+const { Apps } = require('./models');
+
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -68,7 +70,7 @@ const sendUpdate =  async () => {
 const keepTime = () => {
   setInterval(function() {
     let currentTime = moment().format('LT');
-    if(currentTime === '11:06 PM') {
+    if(currentTime === '11:20 PM') {
       sendUpdate();
     }
   }, 60000)
