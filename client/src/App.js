@@ -38,7 +38,7 @@ function App() {
      <div className="">
         <Nav></Nav>
         <main>
-          <Views></Views>
+          <Resume></Resume>
         </main>
         <Footer></Footer>
       </div>
