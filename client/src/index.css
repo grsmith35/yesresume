@@ -92,6 +92,14 @@ input, textarea:focus {
   border: 1px solid rgb(175, 1, 1);
 }
 
+.loginbox {
+  border: 1px solid black;
+  margin: 2px;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 6px;
+}
+
 @media screen and (max-width: 768){
   .input {
       margin-bottom: 3;

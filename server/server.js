@@ -9,7 +9,6 @@ const nodemailer = require('nodemailer');
 const moment = require('moment');
 const { Apps } = require('./models');
 
-
 const PORT = process.env.PORT || 3001;
 const app = express();
 
@@ -17,6 +16,8 @@ const startServer = async () => {
   const server = new ApolloServer({
     typeDefs,
     resolvers,
+    playground: true,
+    introspection: true,
     // context: authMiddleware,
   });
   await server.start();

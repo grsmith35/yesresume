@@ -1,5 +1,6 @@
 import React from 'react';
 import image from '../../assets/images/YES-Awards-Logo.png';
+import { Link } from 'react-router-dom'
 
 export default function Footer() {
     return(
@@ -22,6 +23,9 @@ export default function Footer() {
                             </li>
                             <li className="mb-2">
                                 <a className="link-font" href="https://www.youtube.com/c/YourEmploymentSolutionsYES" target="_blank">YES Youtube</a>
+                            </li>
+                            <li className="mb-2">
+                                <a className="link-font" href="/login">YES Admin Login</a>
                             </li>
                         </ul>
                     </div>

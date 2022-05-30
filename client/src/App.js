@@ -12,6 +12,8 @@ import Resume from './pages/Resume';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
 import Views from './pages/Views';
+import Login from './pages/Login';
+import Admin from './pages/Admin';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -36,11 +38,19 @@ function App() {
   return (
     <ApolloProvider client={client}>
      <div className="">
-        <Nav></Nav>
-        <main>
-          <Resume></Resume>
-        </main>
-        <Footer></Footer>
+       <Router>
+          <Nav></Nav>
+          <main>
+            <Switch>
+              <Route exact path="/" component={Resume} />
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/admin" component={Admin} />
+
+              <Route component={Resume} />
+            </Switch>
+          </main>
+          <Footer></Footer>
+        </Router>
       </div>
     </ApolloProvider>
   );
