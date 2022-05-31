@@ -66,15 +66,15 @@ const sendUpdate =  async () => {
   }).catch(console.error);
 }
 
-const keepTime = () => {
-  setInterval(function() {
-    let currentTime = moment().format('LT');
-    if(currentTime === '1:53 PM') {
-      sendUpdate();
-    }
-  }, 30000)
-}
-keepTime();
+// const keepTime = () => {
+//   setInterval(function() {
+//     let currentTime = moment().format('LT');
+//     if(currentTime === '1:53 PM') {
+//       sendUpdate();
+//     }
+//   }, 30000)
+// }
+// keepTime();
 
 // Serve up static assets
 if (process.env.NODE_ENV === 'production') {
